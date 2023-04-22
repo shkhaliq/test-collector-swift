@@ -54,6 +54,7 @@ public struct TestCollector {
     guard self.shared == nil else { return }
     // Need to create environment first with nil logger since we need the environment to make a logger
     var environment = EnvironmentValues(logger: nil)
+    guard environment.isAnalyticsEnabled else { return }
     let logger = Logger(logLevel: environment.isAnalyticsDebugEnabled ? .debug : .info)
     environment.logger = logger
     let collector = TestCollector(environment: environment, logger: logger)
